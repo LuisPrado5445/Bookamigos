@@ -1,0 +1,31 @@
+[
+    {
+      "usuarioId": 1,
+      "titulo": "El Principito",
+      "autor": "Antoine de Saint-Exupéry",
+      "portada": "https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg",
+      "descripcion": "Un cuento filosófico con profundas reflexiones sobre la vida."
+    },
+    {
+      "usuarioId": 1,
+      "titulo": "Harry Potter y la piedra filosofal",
+      "autor": "J.K. Rowling",
+      "portada": "https://m.media-amazon.com/images/I/81YOuOGFCJL.jpg",
+      "descripcion": "La primera entrega de la saga de Harry Potter."
+    },
+    {
+        "usuarioId": 1,
+        "titulo": "Cien Años de Soledad",
+        "autor": "Gabriel García Márquez",
+        "portada": "https://m.media-amazon.com/images/I/81HMyqGgZtL.jpg",
+        "descripcion": "Una obra maestra de la literatura latinoamericana."
+      },
+      {
+        "usuarioId": 1,
+        "titulo": "Don Quijote de la Mancha",
+        "autor": "Miguel de Cervantes",
+        "portada": "https://m.media-amazon.com/images/I/71xBLRBYOiL.jpg",
+        "descripcion": "Una historia clásica del ingenioso hidalgo."
+      }
+  ]
+  
