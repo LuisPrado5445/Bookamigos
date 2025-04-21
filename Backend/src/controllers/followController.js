@@ -1,4 +1,4 @@
-// src/controllers/followController.js
+
 const db = require('../models');
 const Follow = db.Follow;
 
