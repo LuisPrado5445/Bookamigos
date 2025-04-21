@@ -18,9 +18,14 @@ db.sequelize = sequelize;
 
 db.User = require('./user')(sequelize, DataTypes);
 db.Book = require('./book')(sequelize, DataTypes);
-
+db.Review = require('./review')(sequelize, DataTypes);
+db.Discussion = require('./discussion')(sequelize, DataTypes);
+db.Follow = require('./follow')(sequelize, DataTypes);
 // Relaciones
 db.User.associate(db);
 db.Book.associate(db);
-
+db.Review.associate(db);
+db.Discussion.associate(db);
+db.Follow.associate(db);
 module.exports = db;
+
