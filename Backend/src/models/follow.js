@@ -1,4 +1,3 @@
-// src/models/follow.js
 module.exports = (sequelize, DataTypes) => {
     const Follow = sequelize.define('Follow', {
       seguidorId: {
