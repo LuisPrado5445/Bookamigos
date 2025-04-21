@@ -1,4 +1,3 @@
-// backend/models/user.js
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {
       nombre: DataTypes.STRING,
