@@ -1,4 +1,3 @@
-
 const db = require('../models');
 const Follow = db.Follow;
 
