@@ -8,3 +8,13 @@ exports.getReviews = async (req, res) => {
     res.status(500).json({ error: 'Error al obtener reseñas' });
   }
 };
+
+// Si tienes esto también (crear reseñas), mantenlo:
+exports.createReview = async (req, res) => {
+  try {
+    const nuevaReseña = await Review.create(req.body);
+    res.status(201).json(nuevaReseña);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al crear reseña' });
+  }
+};
