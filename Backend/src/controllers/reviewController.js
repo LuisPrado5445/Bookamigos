@@ -9,7 +9,6 @@ exports.getReviews = async (req, res) => {
   }
 };
 
-// Si tienes esto también (crear reseñas), mantenlo:
 exports.createReview = async (req, res) => {
   try {
     const nuevaReseña = await Review.create(req.body);
