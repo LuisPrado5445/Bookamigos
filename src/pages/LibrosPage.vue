@@ -1,68 +1,82 @@
 <template>
-  <div>
-    <h2>📚 Libros Compartidos</h2>
-
-    <div class="libros-container">
-      <div v-for="libro in libros" :key="libro.id" class="libro-card">
-        <img v-if="libro.portada" :src="libro.portada" alt="Portada" class="portada" />
-        <h3>{{ libro.titulo }}</h3>
-        <p><strong>Autor:</strong> {{ libro.autor }}</p>
-        <p><strong>Compartido por:</strong> {{ libro.usuario_nombre }}</p>
-        <small>{{ formatFecha(libro.creado_en) }}</small>
-      </div>
+  <div class="libros-page">
+    <h1>Biblioteca Digital</h1>
+    
+    <div v-if="loading" class="loading">Cargando libros...</div>
+    <div v-else class="grid-libros">
+      <BookCard 
+      v-for="libro in libros"
+      :key="libro.id"
+      v-bind="libro"
+    />
     </div>
   </div>
 </template>
-<script setup>
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
 
-const libros = ref([])
+<script>
+import BookCard from '@/components/BookCard.vue';
+import librosData from '@/assets/data/librosprueba.json';
 
-const fetchLibros = async () => {
-  try {
-    const response = await axios.get('http://localhost:3001/api/books/disponibles')
-    libros.value = response.data
-  } catch (error) {
-    console.error('Error al obtener los libros:', error)
+export default {
+  components: {
+    BookCard // Registro del componente
+  },
+  data() {
+    return {
+      libros: [],
+      loading: true
+    };
+  },
+  created() {
+    // Simulamos carga asíncrona aunque sea importación directa
+    setTimeout(() => {
+      this.libros = librosData;
+      this.loading = false;
+    }, 500);
+  },
+  methods: {
+    verDetalle(libro) {
+      console.log('Libro seleccionado:', libro);
+      // this.$router.push(`/libros/${libro.id}`); // Ejemplo para ruta detalle
+    }
   }
-}
-
-const formatFecha = (fecha) => {
-  return new Date(fecha).toLocaleDateString()
-}
-
-onMounted(() => {
-  fetchLibros()
-})
+};
 </script>
 
 <style scoped>
-.libros-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+.libros-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.libro-card {
-  background-color: #ffffff;
-  border: 2px solid #512da8;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+h1 {
   text-align: center;
+  margin-bottom: 2rem;
+  color: #2c3e50;
 }
 
-.libro-card h3 {
-  margin-top: 0.5rem;
-  color: #4a148c;
+.grid-libros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
 }
 
-.portada {
-  width: 100%;
-  max-height: 180px;
-  object-fit: contain;
-  margin-bottom: 10px;
-  border-radius: 6px;
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .grid-libros {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  .libros-page {
+    padding: 1rem;
+  }
 }
 </style>
